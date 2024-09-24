@@ -19,7 +19,7 @@ class BandoDeDados{
     public function conectarBD(){
 
         $conexao = mysqli_connect($this->host,$this->login,$this->senha,$this->dataBase);
-        return($conexao);
+        $conexao = $this->conectarBD();
     }
 
     public function inserirCliente($cpf, $nome, $sobrenome, $dataNasc, $telefone, $email, $senha){

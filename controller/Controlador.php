@@ -1,7 +1,9 @@
 <?php
 
-require_once "../model/BancoDeDados.php";
+require_once "../model/BandoDeDados.php";
 require_once "../model/Produto.php";
+require_once "../model/Cliente.php";
+require_once "../model/Funcionario.php";
 
 class Controlador{
 
@@ -9,7 +11,7 @@ class Controlador{
     private $bancoDeDados;
 
     public function __construct(){
-        $this->bancoDeDados = new BancoDeDados("localhost","root","","xhopii");
+        $this->bancoDeDados = new BandoDeDados("localhost","root","","xhopii");
     }
 
     /*
@@ -34,6 +36,12 @@ class Controlador{
                    "<p>Valor: " . $produto["valor"] . "</p>" .
                    "</section>";
         }
+    }
+
+    public function cadastrarCliente($cpf, $nome, $sobrenome, $dataNascimento, $telefone, $email, $senha)
+    {
+        $cliente = new Cliente($cpf,$nome,$sobrenome,$dataNascimento,$telefone,$email,$senha);
+        $this->bancoDeDados->inserirCliente($cliente);
     }
 
 }
